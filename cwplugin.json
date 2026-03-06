@@ -1,11 +1,11 @@
 {
-  "id": "com.rinlit.test",
-  "name": "Test",
-  "version": "1.0.0",
-  "api_version": "~=0.3.0",
+  "id": "com.Internet1235.quiet-time-reminder-plugin",
+  "name": "静班提醒",
+  "version": "1.1.2",
+  "api_version": "~=0.4.1",
   "entry": "main.py",
-  "author": "RinLit",
-  "description": "A Class Widgets plugin.",
+  "author": "LaoShui",
+  "description": "一个在静班时间发送通知以进行提醒的插件。",
   "url": "",
   "readme": "README.md",
   "icon": "icon.png"
