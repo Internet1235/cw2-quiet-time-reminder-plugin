@@ -5,14 +5,16 @@ A Class Widgets plugin.
 
 from ClassWidgets.SDK import CW2Plugin, PluginAPI
 from datetime import datetime
+from pathlib import Path
+from PySide6.QtCore import QUrl
+from PySide6.QtMultimedia import QMediaPlayer, QAudioOutput
 
 
 class Plugin(CW2Plugin):
     def __init__(self, api: PluginAPI):
         super().__init__(api)
-
         # 若要引用插件目录的内容，需在目录前添加插件的工作目录：
-        # self.plugin_dir = self.cw_contexts['PLUGIN_PATH']
+        self.plugin_dir = Path(__file__).parent
         self.notified_times = set()  # 用于记录已经发送通知的时间点
         self.current_date = datetime.now().date()  # 记录当前日期
         # 请在此导入第三方库 / Import third-party libraries here
@@ -92,13 +94,16 @@ class Plugin(CW2Plugin):
             )
             self.notified_times.add(current_time)
 
-            # pygame.mixer.init()
-            # pygame.mixer.music.load(f"{self.plugin_dir}/audios/leave_classroom_reminder.mp3")
-            # pygame.mixer.music.play()
+            self._player.setSource(QUrl.fromLocalFile(f"{self.plugin_dir}/audios/leave_classroom_reminder.mp3"))
+            self._player.play()
 
     def on_load(self):
         super().on_load()
         print(f"Test loaded")
+        
+        self._player = QMediaPlayer()
+        self._audio_output = QAudioOutput()
+        self._player.setAudioOutput(self._audio_output)
 
         self.notification_provider = self.api.notification.register_provider(
             provider_id=self.pid,
