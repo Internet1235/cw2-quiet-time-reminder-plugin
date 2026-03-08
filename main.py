@@ -43,13 +43,13 @@ class Plugin(CW2Plugin):
         if current_time == '15:20' and current_time not in self.notified_times:
             self.notification_provider.push(
                 level=1,  # 自定义通知
-                title='上课',
+                title='眼保健操',
                 #title='静班提醒',
                 #subtitle='',
                 # content=f'静班时间到！当前时间：{current_time}',
                 #content=f'现在是晚修时间，请保持安静！！！\n当前时间: {current_time}',
-                message="眼保健操",
-                duration=1500, # 通知持续时间（毫秒）
+                message='',
+                duration=8000, # 通知持续时间（毫秒）
                 closable=True
             )
             self.notified_times.add(current_time)
@@ -57,13 +57,13 @@ class Plugin(CW2Plugin):
         if current_time == '14:20' and current_time not in self.notified_times:
             self.notification_provider.push(
                 level=1,  # 自定义通知
-                title='上课',
+                title='练字',
                 #title='静班提醒',
                 #subtitle='',
                 # content=f'静班时间到！当前时间：{current_time}',
                 #content=f'现在是晚修时间，请保持安静！！！\n当前时间: {current_time}',
-                message="练字",
-                duration=1500,  # 通知持续时间（毫秒）
+                message='',
+                duration=8000,  # 通知持续时间（毫秒）
                 closable=True
             )
             self.notified_times.add(current_time)
@@ -71,13 +71,13 @@ class Plugin(CW2Plugin):
         if current_time == '07:30' and current_time not in self.notified_times:
             self.notification_provider.push(
                 level=1,  # 自定义通知
-                title='上课',
+                title='早读',
                 #title='静班提醒',
                 #subtitle='',
                 # content=f'静班时间到！当前时间：{current_time}',
                 #content=f'现在是晚修时间，请保持安静！！！\n当前时间: {current_time}',
-                message="早读",
-                duration=1500,  # 通知持续时间（毫秒）
+                message='',
+                duration=8000,  # 通知持续时间（毫秒）
                 closable=True
             )
             self.notified_times.add(current_time)
