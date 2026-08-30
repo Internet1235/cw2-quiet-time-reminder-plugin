@@ -1,6 +1,6 @@
 [project]
-name = "com-rinlit-test"
-version = "1.0.0"
+name = "com.Internet1235.quiet-time-reminder-plugin"
+version = "1.1.5"
 description = "A Class Widgets plugin."
 authors = [
     {name = "RinLit"},
