@@ -8,6 +8,7 @@ from datetime import datetime
 from pathlib import Path
 from PySide6.QtCore import QUrl
 from PySide6.QtMultimedia import QMediaPlayer, QAudioOutput
+from loguru import logger
 
 
 class Plugin(CW2Plugin):
@@ -21,7 +22,7 @@ class Plugin(CW2Plugin):
 
     def update(self):
         now = datetime.now()
-        current_time = now.strftime('%H:%M')
+        current_time = self.api.runtime.current_time.strftime('%H:%M')
         today = now.date()
 
         # 如果日期变化（即到了第二天），清空已通知的时间点
@@ -29,7 +30,7 @@ class Plugin(CW2Plugin):
             self.notified_times.clear()
             self.current_date = today  # 更新当前日期
 
-        if current_time in ['18:45', '20:10'] and current_time not in self.notified_times:
+        if self.api.runtime.current_title == '晚修' and self.api.runtime.current_day_of_week != 5 and self.api.runtime.progress == 0.0 and current_time not in self.notified_times:
             self.notification_provider.push(
                 level=1,  # 自定义通知
                 title='静班提醒',
@@ -40,7 +41,7 @@ class Plugin(CW2Plugin):
             )
             self.notified_times.add(current_time)
 
-        if current_time == '15:20' and current_time not in self.notified_times:
+        if current_time in ['10:35', '15:20'] and current_time not in self.notified_times:
             self.notification_provider.push(
                 level=1,  # 自定义通知
                 title='眼保健操',
@@ -96,6 +97,7 @@ class Plugin(CW2Plugin):
 
             self._player.setSource(QUrl.fromLocalFile(f"{self.plugin_dir}/audios/leave_classroom_reminder.mp3"))
             self._player.play()
+            logger.info("播放完毕")
 
     def on_load(self):
         super().on_load()

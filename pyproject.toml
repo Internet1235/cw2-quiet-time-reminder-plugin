@@ -1,13 +1,17 @@
 [project]
 name = "com.Internet1235.quiet-time-reminder-plugin"
-version = "1.1.5"
-description = "A Class Widgets plugin."
+version = "1.1.6"
+description = "一个在静班时间发送通知以进行提醒的插件。"
 authors = [
-    {name = "RinLit"},
+    {name = "Internet1235"},
 ]
 readme = "README.md"
 requires-python = ">=3.9"
-dependencies = ["class-widgets-sdk"]
+dependencies = [
+    "class-widgets-sdk",
+    "loguru",
+    "datetime",
+]
 
 [build-system]
 requires = ["setuptools"]
